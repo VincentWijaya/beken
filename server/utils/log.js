@@ -38,26 +38,4 @@ let te = (threadId, tag, tagName, msg) => {
   mapMetadata.delete(threadId)
 }
 
-const tdr = (threadId, data, path) => {
-  const logStartTime = mapMetadata.get(threadId)
-  const logTime = new Date()
-  const diff = Math.abs(logTime - logStartTime)  // difference in milliseconds
-  let messageLog = {
-    xid: threadId,
-    rt: diff,
-    port: constant.PORT,
-    ip: data.headers.host,
-    app: constant.SERVICE_NAME,
-    ver: constant.VERSION_URL,
-    path: path,
-    header: data.headers,
-    req: data.request,
-    resp: data.response,
-    error: data.error
-  }
-
-  loggertdr.info(JSON.stringify(messageLog))
-  messageLog.data = JSON.stringify(messageLog.datas)
-}
-
-module.exports = { ts, te, tdr }
+module.exports = { ts, te }

@@ -9,7 +9,8 @@ const pool  = mysql.createPool({
   port            : constant.DB_PORT,
   user            : constant.DB_USR,
   password        : constant.DB_PWD,
-  database        : constant.DB_NM
+  database        : constant.DB_NM,
+  timezone        : '+07:00'
 })
 pool.getConnection((err, connection) => {
   if (err) {

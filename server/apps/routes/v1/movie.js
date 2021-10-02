@@ -10,14 +10,14 @@ router.get('/search', async (req, res) => {
   const xid = headers.xid || threadId
   const body = req.body
   const logging = {
-      title: 'request /search',
+      title: 'request ' + req.url,
       xid: xid,
       content: {
           request: body,
           response: ''
       }
   }
-  log.ts(xid, logging.title, logging.content.request)
+  log.ts(xid, '', logging.title, logging.content.request)
   const response = {
     status: constantCode.ok,
     message: 'Success',

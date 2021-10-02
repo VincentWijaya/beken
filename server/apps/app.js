@@ -3,7 +3,7 @@ const cors = require('cors')
 const morgan = require('morgan')
 const cookieParser = require('cookie-parser')
 const uuidv1 = require('uuid/v1')
-const { constant, logger } = require('../utils')
+const { constant, logger, loggerTDR } = require('../utils')
 const { logRequestToDB } = require('./middleware')
 
 const { movie } = require('./routes/v1')
@@ -44,9 +44,9 @@ const getActualRequestDurationInMilliseconds = start => {
 
 app.use((req, res, next) => {
     const start = process.hrtime()
-    var send = res.send
-    let threadId = uuidv1()
-    let xid = req.headers.xid || threadId
+    const send = res.send
+    const threadId = uuidv1()
+    const xid = req.headers.xid || threadId
     req.headers.xid = xid
 
     if (req.path == '/' + constant.VERSION_URL) {
@@ -69,7 +69,7 @@ app.use((req, res, next) => {
         resp: JSON.parse(resp),
       }
       
-      logger.info(messageLog)
+      loggerTDR.info(JSON.stringify(messageLog))
       send.call(this, resp)
     }
     
