@@ -32,3 +32,5 @@ This folder contains an ExpressJS simple app that can retrieve movie list and mo
 2. Run `nmp install` on your favorite terminal.
 3. After that run `node index`.
 4. Voila, you can use the server API now :)
+
+You can also see the unit test via `npm run test`
