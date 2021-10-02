@@ -10,9 +10,9 @@ To check the sql file firstly you need to run the `db.sql` after that you can us
 
 ---
 
-## refactor.js
+## refactor.js and solve.js
 
-The `refactor.js` file require a NodeJS to run it locally. You can simply type `node refactor` to run the file if you already have NodeJS installed. You can also run it from [Repl.it](http://repl.it/) or [JSBin](https://jsbin.com/?js,console) by copy-paste the code.
+The `refactor.js and solve.js` file require a NodeJS to run it locally. You can simply type `node refactor` or `node solve` to run the file if you already have NodeJS installed. You can also run it from [Repl.it](http://repl.it/) or [JSBin](https://jsbin.com/?js,console) by copy-paste the code.
 
 ---
 
