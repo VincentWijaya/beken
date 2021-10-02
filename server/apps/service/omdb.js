@@ -30,6 +30,35 @@ const searchMovie = async(xid, keyword) => {
   }
 }
 
+const getMovieDetail = async(xid, imdbID) => {
+  try {
+    const request = {
+      method: 'GET',
+      headers: {
+        xid: xid,
+      },
+      url: constant.OMDB_URL + '/',
+      params: {
+        i: imdbID,
+        apikey: constant.OMDB_APIKEY
+      }
+    }
+
+    logger.info(`${xid} | Request Get Movie Detail to OMDB: ${JSON.stringify(request)}`)
+    const response = await axios(request)
+    logger.info(`${xid} | Response Get Movie Detail from OMDB: ${JSON.stringify(response.data)}`)
+
+    const data = response.data
+    if (data.Response != 'True') {
+      throw new Error('Error Get Movie Detail from OMDB')
+    }
+  } catch (error) {
+    logger.error(`${xid} | ERROR Hit OMDB API: ${JSON.stringify(error.message)}`)
+    throw new Error(error)
+  }
+}
+
 module.exports = {
   searchMovie,
+  getMovieDetail
 }
