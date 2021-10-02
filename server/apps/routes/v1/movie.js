@@ -1,14 +1,16 @@
 const express = require('express')
 const uuidv1 = require('uuid/v1')
 const { log, constantCode } = require('../../../utils')
+const { omdb } = require('../../service')
 
 const router = express.Router()
 
-router.get('/search', async (req, res) => {
+router.get('/search/:keyword', async (req, res) => {
   const threadId = uuidv1()
   const headers = req.headers
   const xid = headers.xid || threadId
   const body = req.body
+  const keyword = req.params.keyword
   const logging = {
       title: 'request ' + req.url,
       xid: xid,
@@ -21,9 +23,12 @@ router.get('/search', async (req, res) => {
   const response = {
     status: constantCode.ok,
     message: 'Success',
+    data: {}
   }
 
   try {
+    const movies = await omdb.searchMovie(xid, keyword)
+    response.data = movies.Search
     logging.content.response = response
     log.te(xid, logging.title, logging.content.response)
     return res.status(200).json(response)

@@ -24,6 +24,8 @@ const searchMovie = async(xid, keyword) => {
     if (data.Response != 'True') {
       throw new Error('Error Search Movie from OMDB')
     }
+
+    return data
   } catch (error) {
     logger.error(`${xid} | ERROR Hit OMDB API: ${JSON.stringify(error.message)}`)
     throw new Error(error)
