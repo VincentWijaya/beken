@@ -2,7 +2,11 @@ const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
 const cookieParser = require('cookie-parser')
+const uuidv1 = require('uuid/v1')
 const { constant, logger } = require('../utils')
+const { logRequestToDB } = require('./middleware')
+
+const { movie } = require('./routes/v1')
 
 const app = express()
 
@@ -31,6 +35,13 @@ app.get('/' + constant.VERSION_URL, (req, res) => {
   res.send(constant.SERVICE_NAME.toUpperCase() + ' Service ' + constant.VERSION_URL.toUpperCase() + '.00')
 })
 
+const getActualRequestDurationInMilliseconds = start => {
+  const NS_PER_SEC = 1e9 //  convert to nanoseconds
+  const NS_TO_MS = 1e6 // convert to milliseconds
+  const diff = process.hrtime(start)
+  return (diff[0] * NS_PER_SEC + diff[1]) / NS_TO_MS
+}
+
 app.use((req, res, next) => {
     const start = process.hrtime()
     var send = res.send
@@ -38,7 +49,7 @@ app.use((req, res, next) => {
     let xid = req.headers.xid || threadId
     req.headers.xid = xid
 
-    if (req.path == '/' + constanta.VERSION_URL) {
+    if (req.path == '/' + constant.VERSION_URL) {
       return next()
     }
 
@@ -58,12 +69,14 @@ app.use((req, res, next) => {
         resp: JSON.parse(resp),
       }
       
-      loggertdr.info(messageLog)
+      logger.info(messageLog)
       send.call(this, resp)
     }
     
     next()
   }
 )
+
+app.use('/' + constant.VERSION_URL + '/movie', logRequestToDB, movie)
 
 module.exports = app
