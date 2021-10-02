@@ -6,10 +6,9 @@ moment.tz.setDefault('Asia/Jakarta')
 
 const constant = require('./constant')
 
-const hostname = os.hostname()
 const transport = new (winston.transports.DailyRotateFile)({
   dirname: constant.LOG_DIR,
-  filename: constant.SERVICE_NAME.toUpperCase() + '_' + hostname + '_%DATE%.log',
+  filename: constant.SERVICE_NAME.toUpperCase() + '_' + '_%DATE%.log',
   datePattern: 'YYYY-MM-DD',
   zippedArchive: true,
   maxFiles: '14d',
