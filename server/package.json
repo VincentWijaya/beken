@@ -1,0 +1,25 @@
+{
+  "name": "beken",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "basic-auth": "^2.0.1",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "moment-timezone": "^0.5.26",
+    "morgan": "^1.9.1",
+    "uuid": "^3.3.3",
+    "winston": "^2.4.0",
+    "winston-daily-rotate-file": "^3.10.0"
+  }
+}
