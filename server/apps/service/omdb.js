@@ -54,6 +54,8 @@ const getMovieDetail = async(xid, imdbID) => {
     if (data.Response != 'True') {
       throw new Error('Error Get Movie Detail from OMDB')
     }
+
+    return data
   } catch (error) {
     logger.error(`${xid} | ERROR Hit OMDB API: ${JSON.stringify(error.message)}`)
     throw new Error(error)

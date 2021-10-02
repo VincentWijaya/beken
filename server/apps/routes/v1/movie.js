@@ -41,4 +41,40 @@ router.get('/search/:keyword', async (req, res) => {
   }
 })
 
+router.get('/:imdbID', async (req, res) => {
+  const threadId = uuidv1()
+  const headers = req.headers
+  const xid = headers.xid || threadId
+  const body = req.body
+  const imdbID = req.params.imdbID
+  const logging = {
+      title: 'request ' + req.url,
+      xid: xid,
+      content: {
+          request: body,
+          response: ''
+      }
+  }
+  log.ts(xid, '', logging.title, logging.content.request)
+  const response = {
+    status: constantCode.ok,
+    message: 'Success',
+    data: {}
+  }
+
+  try {
+    const movie = await omdb.getMovieDetail(xid, imdbID)
+    response.data = movie
+    logging.content.response = response
+    log.te(xid, logging.title, logging.content.response)
+    return res.status(200).json(response)
+  } catch (error) {
+    response.responseCode = constantCode.error
+    response.responseMessage = error.message
+    logging.content.response = response
+    log.te(xid, logging.title, logging.content.response)
+    return res.status(200).json(response)
+  }
+})
+
 module.exports = router
