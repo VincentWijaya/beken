@@ -1,5 +1,4 @@
-module.exports = {
-  getAllMoviesSuccess: {
+const getAllMoviesSuccess = {
     "Search": [
       {
         "Title": "Captain Marvel",
@@ -46,7 +45,10 @@ module.exports = {
     ],
     "totalResults": "233",
     "Response": "True"
-  },
+}
+
+module.exports = {
+  getAllMoviesSuccess,
   getAllMoviesSuccessNoData: {
     "Search": [],
     "totalResults": "0",
@@ -92,5 +94,5 @@ module.exports = {
   getMovieFailed: {
     "Response": "False",
     "Error": "Incorrect IMDb ID."
-  }
+  },
 }
