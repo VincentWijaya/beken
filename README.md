@@ -34,3 +34,137 @@ This folder contains an ExpressJS simple app that can retrieve movie list and mo
 4. Voila, you can use the server API now :)
 
 You can also see the unit test via `npm run test`
+
+### API List
+
+#### 1. Search Movies:
+
+`curl --location --request GET 'localhost:3000/v1/movie/search/marvel'`
+
+Response:
+
+```yaml
+{
+  'status': '00',
+  'message': 'Success',
+  'data':
+    [
+      {
+        'Title': 'Captain Marvel',
+        'Year': '2019',
+        'imdbID': 'tt4154664',
+        'Type': 'movie',
+        'Poster': 'https://m.media-amazon.com/images/M/MV5BMTE0YWFmOTMtYTU2ZS00ZTIxLWE3OTEtYTNiYzBkZjViZThiXkEyXkFqcGdeQXVyODMzMzQ4OTI@._V1_SX300.jpg',
+      },
+      {
+        'Title': 'Marvel One-Shot: Agent Carter',
+        'Year': '2013',
+        'imdbID': 'tt3067038',
+        'Type': 'movie',
+        'Poster': 'https://m.media-amazon.com/images/M/MV5BZDIwZTM4M2QtMWFhYy00N2VmLWFlMjItMzI3NjBjYTc0OTMxXkEyXkFqcGdeQXVyNTE1NjY5Mg@@._V1_SX300.jpg',
+      },
+      {
+        'Title': 'Marvel One-Shot: All Hail the King',
+        'Year': '2014',
+        'imdbID': 'tt3438640',
+        'Type': 'movie',
+        'Poster': 'https://m.media-amazon.com/images/M/MV5BZGFkMTZkMDQtNzM4Yy00YWEwLTkzOWEtZTMyNDRlNmJhYWJhXkEyXkFqcGdeQXVyNTE1NjY5Mg@@._V1_SX300.jpg',
+      },
+      {
+        'Title': 'Marvel One-Shot: Item 47',
+        'Year': '2012',
+        'imdbID': 'tt2247732',
+        'Type': 'movie',
+        'Poster': 'https://m.media-amazon.com/images/M/MV5BMjNlMzAxNmQtOGEwZi00NTEyLWI0NWYtMTlhNmE2YTA3ZDVhXkEyXkFqcGdeQXVyNTE1NjY5Mg@@._V1_SX300.jpg',
+      },
+      {
+        'Title': "Marvel One-Shot: A Funny Thing Happened on the Way to Thor's Hammer",
+        'Year': '2011',
+        'imdbID': 'tt2011109',
+        'Type': 'movie',
+        'Poster': 'https://m.media-amazon.com/images/M/MV5BYmVlYTg3N2QtMWM2OS00YWQyLWI2M2MtMDc0ZjBkZjk1MTY3XkEyXkFqcGdeQXVyNTE1NjY5Mg@@._V1_SX300.jpg',
+      },
+      {
+        'Title': 'Marvel One-Shot: The Consultant',
+        'Year': '2011',
+        'imdbID': 'tt2011118',
+        'Type': 'movie',
+        'Poster': 'https://m.media-amazon.com/images/M/MV5BNGE4YjU5MDAtYzYzMC00M2RlLTk0NDgtNDU1MjgyMGI0MjI3XkEyXkFqcGdeQXVyNTE1NjY5Mg@@._V1_SX300.jpg',
+      },
+      {
+        'Title': 'Marvel Studios: Legends',
+        'Year': '2021–',
+        'imdbID': 'tt13650480',
+        'Type': 'series',
+        'Poster': 'https://m.media-amazon.com/images/M/MV5BNGE3ODYyNDYtODk1NS00ODRmLTk5YTYtOGMyMTZkYTEyODhlXkEyXkFqcGdeQXVyODQ4MjU1MDk@._V1_SX300.jpg',
+      },
+      {
+        'Title': 'Lego Marvel Super Heroes',
+        'Year': '2013',
+        'imdbID': 'tt2620204',
+        'Type': 'game',
+        'Poster': 'https://m.media-amazon.com/images/M/MV5BOTA5ODA2NTI2M15BMl5BanBnXkFtZTgwNTcxMzU1MDE@._V1_SX300.jpg',
+      },
+      {
+        'Title': 'Marvel Studios: Assembled',
+        'Year': '2021–',
+        'imdbID': 'tt14094206',
+        'Type': 'series',
+        'Poster': 'https://m.media-amazon.com/images/M/MV5BNWMyNWYyMmYtZjNiZi00MzFmLTg2MjYtYWEzZWY1MzBhY2I2XkEyXkFqcGdeQXVyNTE1NjY5Mg@@._V1_SX300.jpg',
+      },
+      {
+        'Title': 'Marvel Studios: Assembling a Universe',
+        'Year': '2014',
+        'imdbID': 'tt3591568',
+        'Type': 'movie',
+        'Poster': 'https://m.media-amazon.com/images/M/MV5BZjNiN2NhYzQtYmI1NC00NGRmLWE2MWYtNjAxNjMzZmYxNDJhXkEyXkFqcGdeQXVyODQ4MjU1MDk@._V1_SX300.jpg',
+      },
+    ],
+}
+```
+
+#### 2. Get Movie Detail:
+
+`curl --location --request GET 'localhost:3000/v1/movie/tt4154664'`
+
+Response:
+
+```yaml
+{
+  'status': '00',
+  'message': 'Success',
+  'data':
+    {
+      'Title': 'Captain Marvel',
+      'Year': '2019',
+      'Rated': 'PG-13',
+      'Released': '08 Mar 2019',
+      'Runtime': '123 min',
+      'Genre': 'Action, Adventure, Sci-Fi',
+      'Director': 'Anna Boden, Ryan Fleck',
+      'Writer': 'Anna Boden, Ryan Fleck, Geneva Robertson-Dworet',
+      'Actors': 'Brie Larson, Samuel L. Jackson, Ben Mendelsohn',
+      'Plot': "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien races.",
+      'Language': 'English',
+      'Country': 'United States, Australia',
+      'Awards': '9 wins & 52 nominations',
+      'Poster': 'https://m.media-amazon.com/images/M/MV5BMTE0YWFmOTMtYTU2ZS00ZTIxLWE3OTEtYTNiYzBkZjViZThiXkEyXkFqcGdeQXVyODMzMzQ4OTI@._V1_SX300.jpg',
+      'Ratings':
+        [
+          { 'Source': 'Internet Movie Database', 'Value': '6.8/10' },
+          { 'Source': 'Rotten Tomatoes', 'Value': '79%' },
+          { 'Source': 'Metacritic', 'Value': '64/100' },
+        ],
+      'Metascore': '64',
+      'imdbRating': '6.8',
+      'imdbVotes': '491,174',
+      'imdbID': 'tt4154664',
+      'Type': 'movie',
+      'DVD': '28 May 2019',
+      'BoxOffice': '$426,829,839',
+      'Production': 'Marvel Studios',
+      'Website': 'N/A',
+      'Response': 'True',
+    },
+}
+```
