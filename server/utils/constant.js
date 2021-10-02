@@ -9,6 +9,8 @@ const DB_USR = process.env.DB_USR || 'root'
 const DB_PWD = process.env.DB_PWD || 'root'
 const DB_NM = process.env.DB_NM || 'beken'
 const DB_POOL = process.env.POOL || 10
+const OMDB_APIKEY = process.env.OMDB_APIKEY || 'faf7e5bb'
+const OMDB_URL = process.env.OMDB_URL || 'https://www.omdbapi.com'
 
 module.exports = {
   VERSION_URL,
@@ -21,5 +23,7 @@ module.exports = {
   DB_USR,
   DB_PWD,
   DB_NM,
-  DB_POOL
+  DB_POOL,
+  OMDB_APIKEY,
+  OMDB_URL
 }

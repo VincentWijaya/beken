@@ -1,0 +1,35 @@
+const axios = require('axios')
+const constant = require('../../utils/constant')
+const logger = require('../../utils/logger')
+
+const searchMovie = async(xid, keyword) => {
+  try {
+    const request = {
+      method: 'GET',
+      headers: {
+        xid: xid,
+      },
+      url: constant.OMDB_URL + '/',
+      params: {
+        s: keyword,
+        apikey: constant.OMDB_APIKEY
+      }
+    }
+
+    logger.info(`${xid} | Request Search Movie to OMDB: ${JSON.stringify(request)}`)
+    const response = await axios(request)
+    logger.info(`${xid} | Response Search Movie from OMDB: ${JSON.stringify(response.data)}`)
+
+    const data = response.data
+    if (data.Response != 'True') {
+      throw new Error('Error Search Movie from OMDB')
+    }
+  } catch (error) {
+    logger.error(`${xid} | ERROR Hit OMDB API: ${JSON.stringify(error.message)}`)
+    throw new Error(error)
+  }
+}
+
+module.exports = {
+  searchMovie,
+}
