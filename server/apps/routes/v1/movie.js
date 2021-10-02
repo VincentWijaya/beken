@@ -10,7 +10,6 @@ router.get('/search/:keyword', async (req, res) => {
   const headers = req.headers
   const xid = headers.xid || threadId
   const body = req.body
-  const keyword = req.params.keyword
   const logging = {
       title: 'request ' + req.url,
       xid: xid,
@@ -27,8 +26,10 @@ router.get('/search/:keyword', async (req, res) => {
   }
 
   try {
-    const movies = await omdb.searchMovie(xid, keyword)
-    response.data = movies.Search
+    const movies = await omdb.searchMovie(xid, req.params.keyword, req.query.page)
+    response.data.movies = movies.Search
+    response.data.totalPage = Math.ceil(Number(movies.totalResults) / movies.Search.length)
+
     logging.content.response = response
     log.te(xid, '', logging.title, logging.content.response)
     return res.status(200).json(response)

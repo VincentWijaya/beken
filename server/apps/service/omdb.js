@@ -2,7 +2,7 @@ const axios = require('axios')
 const constant = require('../../utils/constant')
 const logger = require('../../utils/logger')
 
-const searchMovie = async(xid, keyword) => {
+const searchMovie = async(xid, keyword, page) => {
   try {
     const request = {
       method: 'GET',
@@ -14,6 +14,10 @@ const searchMovie = async(xid, keyword) => {
         s: keyword,
         apikey: constant.OMDB_APIKEY
       }
+    }
+
+    if (page) {
+      request.params.page = page
     }
 
     logger.info(`${xid} | Request Search Movie to OMDB: ${JSON.stringify(request)}`)
