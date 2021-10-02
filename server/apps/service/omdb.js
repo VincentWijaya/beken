@@ -21,7 +21,7 @@ const searchMovie = async(xid, keyword) => {
     logger.info(`${xid} | Response Search Movie from OMDB: ${JSON.stringify(response.data)}`)
 
     const data = response.data
-    if (data.Response != 'True') {
+    if (data.Response != 'True' || data.Error) {
       throw new Error('Error Search Movie from OMDB')
     }
 
@@ -51,7 +51,7 @@ const getMovieDetail = async(xid, imdbID) => {
     logger.info(`${xid} | Response Get Movie Detail from OMDB: ${JSON.stringify(response.data)}`)
 
     const data = response.data
-    if (data.Response != 'True') {
+    if (data.Response != 'True' || data.Error) {
       throw new Error('Error Get Movie Detail from OMDB')
     }
 
