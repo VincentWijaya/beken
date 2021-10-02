@@ -27,16 +27,24 @@ router.get('/search/:keyword', async (req, res) => {
   }
 
   try {
+    if (!keyword) {
+      response.responseCode = constantCode.invalidRequest
+      response.responseMessage = 'invalid request'
+      logging.content.response = response
+      log.te(xid, '', logging.title, logging.content.response)
+      return res.status(200).json(response)
+    }
+
     const movies = await omdb.searchMovie(xid, keyword)
     response.data = movies.Search
     logging.content.response = response
-    log.te(xid, logging.title, logging.content.response)
+    log.te(xid, '', logging.title, logging.content.response)
     return res.status(200).json(response)
   } catch (error) {
     response.responseCode = constantCode.error
     response.responseMessage = error.message
     logging.content.response = response
-    log.te(xid, logging.title, logging.content.response)
+    log.te(xid, '', logging.title, logging.content.response)
     return res.status(200).json(response)
   }
 })
@@ -66,13 +74,13 @@ router.get('/:imdbID', async (req, res) => {
     const movie = await omdb.getMovieDetail(xid, imdbID)
     response.data = movie
     logging.content.response = response
-    log.te(xid, logging.title, logging.content.response)
+    log.te(xid, '', logging.title, logging.content.response)
     return res.status(200).json(response)
   } catch (error) {
     response.responseCode = constantCode.error
     response.responseMessage = error.message
     logging.content.response = response
-    log.te(xid, logging.title, logging.content.response)
+    log.te(xid, '', logging.title, logging.content.response)
     return res.status(200).json(response)
   }
 })

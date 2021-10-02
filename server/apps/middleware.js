@@ -1,7 +1,7 @@
 const db = require('../config/mysql')
 
 const logRequestToDB = (req, res, next) => {
-  const endpoint = req.url
+  const endpoint = req.originalUrl
   const body = JSON.stringify(req.body)
   const dateTime = new Date().toISOString()
 
