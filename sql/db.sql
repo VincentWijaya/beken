@@ -5,3 +5,7 @@ CREATE TABLE test.user (
   username VARCHAR(45) NULL,
   parent INT NULL,
   PRIMARY KEY (`id`));
+
+INSERT INTO test.user (`username`, `parent`) VALUES ('Ali', '2');
+INSERT INTO test.user (`username`, `parent`) VALUES ('Budi', '0');
+INSERT INTO test.user (`username`, `parent`) VALUES ('Cecep', '0');
