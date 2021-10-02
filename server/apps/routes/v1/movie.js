@@ -27,14 +27,6 @@ router.get('/search/:keyword', async (req, res) => {
   }
 
   try {
-    if (!keyword) {
-      response.status = constantCode.invalidRequest
-      response.message = 'invalid request'
-      logging.content.response = response
-      log.te(xid, '', logging.title, logging.content.response)
-      return res.status(200).json(response)
-    }
-
     const movies = await omdb.searchMovie(xid, keyword)
     response.data = movies.Search
     logging.content.response = response
@@ -49,7 +41,7 @@ router.get('/search/:keyword', async (req, res) => {
   }
 })
 
-router.get('/:imdbID', async (req, res) => {
+router.get('/detail/:imdbID', async (req, res) => {
   const threadId = uuidv1()
   const headers = req.headers
   const xid = headers.xid || threadId
@@ -71,14 +63,6 @@ router.get('/:imdbID', async (req, res) => {
   }
 
   try {
-    if (!imdbID) {
-      response.status = constantCode.invalidRequest
-      response.message = 'invalid request'
-      logging.content.response = response
-      log.te(xid, '', logging.title, logging.content.response)
-      return res.status(200).json(response)
-    }
-
     const movie = await omdb.getMovieDetail(xid, imdbID)
     response.data = movie
     logging.content.response = response
