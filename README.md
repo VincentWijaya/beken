@@ -41,7 +41,14 @@ Here's I attach the [server health check](http://116.193.190.48:3000/v1) to make
 
 ### API List
 
-#### 1. Search Movies:
+#### 1. Health Check
+
+`curl --location --request GET '116.193.190.48:3000/v1'`
+
+Response:
+`BEKEN Service V1.00`
+
+#### 2. Search Movies:
 
 `curl --location --request GET '116.193.190.48:3000/v1/movie/search/marvel'`
 
@@ -135,7 +142,7 @@ Response:
 }
 ```
 
-#### 2. Get Movie Detail:
+#### 3. Get Movie Detail:
 
 `curl --location --request GET '116.193.190.48:3000/v1/movie/tt4154664'`
 
