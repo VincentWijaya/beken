@@ -35,15 +35,19 @@ This folder contains an ExpressJS simple app that can retrieve movie list and mo
 
 You can also see the unit test via `npm run test`
 
+Beside running it locally, you can also access the API via the curl below xD
+
+Here's I attach the [server health check](http://116.193.190.48:3000/v1) to make sure this app is up and running
+
 ### API List
 
 #### 1. Search Movies:
 
-`curl --location --request GET 'localhost:3000/v1/movie/search/marvel'`
+`curl --location --request GET '116.193.190.48:3000/v1/movie/search/marvel'`
 
 OR
 
-`curl --location --request GET 'localhost:3000/v1/movie/search/marvel?page=2'`
+`curl --location --request GET '116.193.190.48:3000/v1/movie/search/marvel?page=2'`
 
 Response:
 
@@ -133,7 +137,7 @@ Response:
 
 #### 2. Get Movie Detail:
 
-`curl --location --request GET 'localhost:3000/v1/movie/tt4154664'`
+`curl --location --request GET '116.193.190.48:3000/v1/movie/tt4154664'`
 
 Response:
 
