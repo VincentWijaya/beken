@@ -10,3 +10,5 @@ app.listen(port, () => {
   logger.info(message)
   console.log(message)
 })
+
+module.exports = app
